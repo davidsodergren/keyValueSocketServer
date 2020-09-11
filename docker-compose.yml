@@ -1,0 +1,40 @@
+version: '3'
+services:
+  socketserver:
+    build: ./socketServer/.
+    environment:
+      - SOCKET_SERVER_PORT=8081
+    container_name: socketserver
+  socketclient1:
+    build: ./socketclient/.
+    environment:
+      - SOCKET_SERVER_ADDRESS=socketserver
+      - SOCKET_SERVER_PORT=8081
+      - TOMCAT_PORT=8082
+    ports:
+      - "8082:8082"
+    container_name: socketclient1
+    depends_on:
+      - socketserver
+  socketclient2:
+    build: ./socketclient/.
+    environment:
+      - SOCKET_SERVER_ADDRESS=socketserver
+      - SOCKET_SERVER_PORT=8081
+      - TOMCAT_PORT=8083
+    ports:
+      - "8083:8083"
+    container_name: socketclient2
+    depends_on:
+      - socketclient1
+  socketclient3:
+    build: ./socketclient/.
+    environment:
+      - SOCKET_SERVER_ADDRESS=socketserver
+      - SOCKET_SERVER_PORT=8081
+      - TOMCAT_PORT=8084
+    ports:
+      - "8084:8084"
+    container_name: socketclient3
+    depends_on:
+      - socketclient2

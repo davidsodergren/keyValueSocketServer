@@ -22,6 +22,7 @@ public class KeyValueServer {
     try (ServerSocket serverSocket = new ServerSocket(port)) {
 
       System.out.println("Socket server is listening on port " + port);
+      System.out.println("Server started: " + serverSocket);
 
       while (true) {
         Socket socket = serverSocket.accept();
