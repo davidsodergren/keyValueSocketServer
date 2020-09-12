@@ -10,25 +10,13 @@ import java.net.Socket;
 
 public class SocketCommunicationConfig {
 
-  public static BufferedReader CreateReaderForSocket(Socket socket) {
-    InputStream input = null;
-    try {
-      input = socket.getInputStream();
-    } catch (IOException e) {
-      System.out.println("Error when setting up reader");
-      e.printStackTrace();
-    }
+  public static BufferedReader CreateReaderForSocket(Socket socket) throws IOException {
+    InputStream input = socket.getInputStream();
     return new BufferedReader(new InputStreamReader(input));
   }
 
-  public static PrintWriter CreateWriterForSocket(Socket socket) {
-    OutputStream output = null;
-    try {
-      output = socket.getOutputStream();
-    } catch (IOException ex) {
-      System.out.println("Error getting output stream: " + ex.getMessage());
-      ex.printStackTrace();
-    }
+  public static PrintWriter CreateWriterForSocket(Socket socket) throws IOException {
+    OutputStream output = socket.getOutputStream();
     return new PrintWriter(output, true);
   }
 }

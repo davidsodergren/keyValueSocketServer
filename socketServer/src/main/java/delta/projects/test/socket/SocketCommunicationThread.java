@@ -4,15 +4,19 @@ import delta.projects.test.server.KeyValueServer;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import org.apache.log4j.Logger;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-public class MessageReceiverThread extends Thread {
+public class SocketCommunicationThread extends Thread {
+
+  private final static Logger logger = Logger.getLogger(SocketCommunicationThread.class);
+
   private PrintWriter printWriter;
   private BufferedReader bufferedReader;
 
-  public MessageReceiverThread(BufferedReader bufferedReader, PrintWriter printWriter) {
+  public SocketCommunicationThread(BufferedReader bufferedReader, PrintWriter printWriter) {
     this.bufferedReader = bufferedReader;
     this.printWriter = printWriter;
   }
@@ -21,12 +25,12 @@ public class MessageReceiverThread extends Thread {
     try {
       while (true) {
         JSONObject jsonObject = receiveMessage();
-        System.out.println("Received message: " + jsonObject.toString());
+        logger.info("Received message: " + jsonObject.toString());
         KeyValueServer.Broadcast(jsonObject.toString(), this);
       }
     } catch (IOException | ParseException ex) {
-      System.out.println("Error in UserThread: " + ex.getMessage());
-      ex.printStackTrace();
+      KeyValueServer.RemoveSocketCommunicationThread(this);
+      logger.error("Error in UserThread: " + ex.getMessage());
     }
   }
 

@@ -7,13 +7,15 @@ import deltaprojects.restapi.socketclient.threads.ReadThread;
 import deltaprojects.restapi.socketclient.threads.WriteThread;
 import java.io.IOException;
 import java.net.Socket;
-import java.net.UnknownHostException;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 
 @Component
 public class KeyValueClient {
+
+  private final static Logger logger = Logger.getLogger(KeyValueClient.class);
 
   @Value("${socket.hostname}")
   private String hostname;
@@ -32,11 +34,11 @@ public class KeyValueClient {
   }
 
   public void connectToSocketServer() throws IOException {
-    System.out.println("Trying to connect to host: " + hostname + " on port: " +port);
-      Socket socket = new Socket(hostname, port);
-      new ReadThread(socketCommunicationConfig.createReaderForSocket(socket), keyValueStoreService).start();
-      new WriteThread(socketCommunicationConfig.createWriterForSocket(socket), keyValueQueueService).start();
-      System.out.println("Connected to socket server");
+    logger.info("Trying to connect to socket server with hostname: " + hostname + " on port: " + port);
+    Socket socket = new Socket(hostname, port);
+    new ReadThread(socketCommunicationConfig.createReaderForSocket(socket), keyValueStoreService).start();
+    new WriteThread(socketCommunicationConfig.createWriterForSocket(socket), keyValueQueueService).start();
+    logger.info("Connected to socket server");
   }
 
 }

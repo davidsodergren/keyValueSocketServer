@@ -12,25 +12,14 @@ import org.springframework.stereotype.Component;
 @Component
 public class SocketCommunicationConfig {
 
-  public BufferedReader createReaderForSocket(Socket socket) {
-    InputStream input = null;
-    try {
-      input = socket.getInputStream();
-    } catch (IOException e) {
-      System.out.println("Error when setting up reader");
-      e.printStackTrace();
-    }
+  public BufferedReader createReaderForSocket(Socket socket) throws IOException {
+    InputStream input = socket.getInputStream();
     return new BufferedReader(new InputStreamReader(input));
   }
 
-  public PrintWriter createWriterForSocket(Socket socket) {
-    OutputStream output = null;
-    try {
-      output = socket.getOutputStream();
-    } catch (IOException ex) {
-      System.out.println("Error getting output stream: " + ex.getMessage());
-      ex.printStackTrace();
-    }
+  public PrintWriter createWriterForSocket(Socket socket) throws IOException {
+    OutputStream output = socket.getOutputStream();
     return new PrintWriter(output, true);
   }
 }
+
