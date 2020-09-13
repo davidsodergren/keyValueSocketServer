@@ -10,12 +10,15 @@ import java.net.Socket;
 
 public class SocketCommunicationConfig {
 
-  public static BufferedReader CreateReaderForSocket(Socket socket) throws IOException {
+  private SocketCommunicationConfig() {
+  }
+
+  public static BufferedReader createReaderForSocket(Socket socket) throws IOException {
     InputStream input = socket.getInputStream();
     return new BufferedReader(new InputStreamReader(input));
   }
 
-  public static PrintWriter CreateWriterForSocket(Socket socket) throws IOException {
+  public static PrintWriter createWriterForSocket(Socket socket) throws IOException {
     OutputStream output = socket.getOutputStream();
     return new PrintWriter(output, true);
   }

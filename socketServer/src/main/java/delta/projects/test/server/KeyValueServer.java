@@ -13,10 +13,10 @@ import org.apache.log4j.Logger;
 
 public class KeyValueServer {
 
-  private final static Logger logger = Logger.getLogger(KeyValueServer.class);
+  private static final Logger logger = Logger.getLogger(KeyValueServer.class);
 
   private final int port;
-  private final static Set<SocketCommunicationThread> SOCKET_COMMUNICATION_THREADS = new HashSet<>();
+  private static final Set<SocketCommunicationThread> SOCKET_COMMUNICATION_THREADS = new HashSet<>();
 
   public KeyValueServer(int port) {
     this.port = port;
@@ -28,8 +28,8 @@ public class KeyValueServer {
 
       while (true) {
         Socket socket = serverSocket.accept();
-        BufferedReader bufferedReader = SocketCommunicationConfig.CreateReaderForSocket(socket);
-        PrintWriter printWriter = SocketCommunicationConfig.CreateWriterForSocket(socket);
+        BufferedReader bufferedReader = SocketCommunicationConfig.createReaderForSocket(socket);
+        PrintWriter printWriter = SocketCommunicationConfig.createWriterForSocket(socket);
 
         SocketCommunicationThread socketCommunicationThread = new SocketCommunicationThread(bufferedReader, printWriter);
         logger.info("New node connected");
@@ -41,7 +41,7 @@ public class KeyValueServer {
     }
   }
 
-  public static void Broadcast(String keyValue, SocketCommunicationThread excludeUser) {
+  public static void broadcast(String keyValue, SocketCommunicationThread excludeUser) {
     logger.info("Sending new key/value pair to all sockets");
     SOCKET_COMMUNICATION_THREADS
         .stream()
@@ -49,7 +49,7 @@ public class KeyValueServer {
         .forEach(socket -> socket.sendMessage(keyValue));
   }
 
-  public static void RemoveSocketCommunicationThread(SocketCommunicationThread removeUser) {
+  public static void removeSocketCommunicationThread(SocketCommunicationThread removeUser) {
     logger.info("Removing socket from list of all sockets. Socket that was removed: " + removeUser.getName());
     SOCKET_COMMUNICATION_THREADS.remove(removeUser);
   }

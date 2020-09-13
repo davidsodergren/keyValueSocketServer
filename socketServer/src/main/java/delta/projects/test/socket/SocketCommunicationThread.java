@@ -11,7 +11,7 @@ import org.json.simple.parser.ParseException;
 
 public class SocketCommunicationThread extends Thread {
 
-  private final static Logger logger = Logger.getLogger(SocketCommunicationThread.class);
+  private static final Logger logger = Logger.getLogger(SocketCommunicationThread.class);
 
   private PrintWriter printWriter;
   private BufferedReader bufferedReader;
@@ -21,15 +21,16 @@ public class SocketCommunicationThread extends Thread {
     this.printWriter = printWriter;
   }
 
+  @Override
   public void run() {
     try {
       while (true) {
         JSONObject jsonObject = receiveMessage();
         logger.info("Received message: " + jsonObject.toString());
-        KeyValueServer.Broadcast(jsonObject.toString(), this);
+        KeyValueServer.broadcast(jsonObject.toString(), this);
       }
     } catch (IOException | ParseException ex) {
-      KeyValueServer.RemoveSocketCommunicationThread(this);
+      KeyValueServer.removeSocketCommunicationThread(this);
       logger.error("Error in UserThread: " + ex.getMessage());
     }
   }
