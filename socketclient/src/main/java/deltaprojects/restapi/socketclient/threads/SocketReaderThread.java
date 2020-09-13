@@ -8,14 +8,14 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-public class ReadThread extends Thread {
+public class SocketReaderThread extends Thread {
 
-  private final static Logger logger = Logger.getLogger(ReadThread.class);
+  private final static Logger logger = Logger.getLogger(SocketReaderThread.class);
 
   private BufferedReader reader;
   private final KeyValueStoreService keyValueStoreService;
 
-  public ReadThread(BufferedReader reader, KeyValueStoreService keyValueStoreService) {
+  public SocketReaderThread(BufferedReader reader, KeyValueStoreService keyValueStoreService) {
     this.reader = reader;
     this.keyValueStoreService = keyValueStoreService;
   }

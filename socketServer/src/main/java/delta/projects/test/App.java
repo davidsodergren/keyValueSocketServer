@@ -1,7 +1,6 @@
 package delta.projects.test;
 
 import delta.projects.test.server.KeyValueServer;
-import delta.projects.test.socket.SocketCommunicationThread;
 import org.apache.log4j.Logger;
 
 

@@ -5,15 +5,15 @@ import java.io.PrintWriter;
 import org.apache.log4j.Logger;
 import org.json.simple.JSONObject;
 
-public class WriteThread extends Thread {
+public class SocketWriterThread extends Thread {
 
-  private final static Logger logger = Logger.getLogger(WriteThread.class);
+  private final static Logger logger = Logger.getLogger(SocketWriterThread.class);
 
   private final PrintWriter printWriter;
   private final KeyValueQueueService keyValueQueueService;
 
 
-  public WriteThread(PrintWriter printWriter, KeyValueQueueService keyValueQueueService) {
+  public SocketWriterThread(PrintWriter printWriter, KeyValueQueueService keyValueQueueService) {
     this.printWriter = printWriter;
     this.keyValueQueueService = keyValueQueueService;
   }
