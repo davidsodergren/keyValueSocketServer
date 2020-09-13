@@ -1,6 +1,6 @@
 # keyValueSocketServer
 
-This is my solution to a distributed key/value store
+## This is my solution to a distributed key/value store
 
 The reason why I chose Java for this project was because it is a very good and stable language for creating backend services of this type. Java has good support for creating and using web sockets which is a technique/tool that was specifically important for the solution which I chose for this task. The project also required to create a restful api which could handle GET/PUT requests, this can easily be done with Spring Boot which I used on top of Java. Another reason why I chose Java is due to the fact that it is the language I feel most confident working with. In addition to Java I used Maven to be able to build my project and handle dependencies in a smooth way. I use docker to make it easy for anyone to test and try out the application on their own. I also use docker compose which is configured to start 3 different nodes which suits the requirement for this task.
 
