@@ -8,7 +8,7 @@ import org.springframework.context.ApplicationContext;
 @SpringBootApplication
 public class SocketClientApplication {
 
-	private final static Logger logger = Logger.getLogger(SocketClientApplication.class);
+	private static final Logger logger = Logger.getLogger(SocketClientApplication.class);
 
 	public static void main(String[] args) {
 		ApplicationContext app = SpringApplication.run(SocketClientApplication.class, args);

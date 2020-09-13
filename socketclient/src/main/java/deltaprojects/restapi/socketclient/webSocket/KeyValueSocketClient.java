@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class KeyValueSocketClient {
 
-  private final static Logger logger = Logger.getLogger(KeyValueSocketClient.class);
+  private static final Logger logger = Logger.getLogger(KeyValueSocketClient.class);
 
   @Value("${socket.hostname}")
   private String hostname;

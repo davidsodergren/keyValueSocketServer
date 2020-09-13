@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class KeyValueQueueService {
 
-  private final static Logger logger = Logger.getLogger(KeyValueQueueService.class);
+  private static final Logger logger = Logger.getLogger(KeyValueQueueService.class);
 
   private static final BlockingQueue<JSONObject> keyValueMessageQueue = new LinkedBlockingQueue<>(200);
 

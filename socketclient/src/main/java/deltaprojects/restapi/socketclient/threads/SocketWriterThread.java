@@ -7,7 +7,7 @@ import org.json.simple.JSONObject;
 
 public class SocketWriterThread extends Thread {
 
-  private final static Logger logger = Logger.getLogger(SocketWriterThread.class);
+  private static final Logger logger = Logger.getLogger(SocketWriterThread.class);
 
   private final PrintWriter printWriter;
   private final KeyValueQueueService keyValueQueueService;

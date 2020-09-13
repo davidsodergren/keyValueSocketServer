@@ -9,9 +9,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class KeyValueStoreService {
 
-  private final static Logger logger = Logger.getLogger(KeyValueStoreService.class);
+  private static final Logger logger = Logger.getLogger(KeyValueStoreService.class);
 
-  private final static ConcurrentMap<String, JSONObject> keyValueStore = new ConcurrentHashMap<>();
+  private static final ConcurrentMap<String, JSONObject> keyValueStore = new ConcurrentHashMap<>();
 
   public void addKeyValueToStore(String key, JSONObject jsonObject) {
     keyValueStore.put(key, jsonObject);

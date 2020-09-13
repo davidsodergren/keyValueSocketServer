@@ -10,7 +10,7 @@ import org.json.simple.parser.ParseException;
 
 public class SocketReaderThread extends Thread {
 
-  private final static Logger logger = Logger.getLogger(SocketReaderThread.class);
+  private static final Logger logger = Logger.getLogger(SocketReaderThread.class);
 
   private BufferedReader reader;
   private final KeyValueStoreService keyValueStoreService;
