@@ -1,6 +1,7 @@
 # keyValueSocketServer
 
-### In order to start the application in the easiest way you need to have maven, docker & docker-compose installed on your computer. The easiest way to run the application is to run the script "buildRun.sh" which will trigger: maven clean install -> docker-compose build -> docker-compose up -d. The applications will try to use port 8082,8083 & 8084. Please make sure that those ports are not in use or change the port configuration in the docker-compose.yml
+## Run and build application 
+In order to start the application in the easiest way you need to have maven, docker & docker-compose installed on your computer. The easiest way to run the application is to run the script "buildRun.sh" which will trigger: maven clean install -> docker-compose build -> docker-compose up -d. The applications will try to use port 8082,8083 & 8084. Please make sure that those ports are not in use or change the port configuration in the docker-compose.yml
 
 ## This is my solution to a distributed key/value store
 
